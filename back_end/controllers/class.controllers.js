@@ -90,12 +90,6 @@ exports.withdrawalForm = async (req, res) => {
         })
     }
 
-    // student.classes = student.classes.filter(c => c.toJSON().id !== class_id)
-    // await student.save();
-
-    // course.users = course.users.filter(u => u.toJSON().id !== user_id)
-    // await course.save();
-
     student.classes = student.classes.filter((c) => c.toString() !== class_id);
     course.users = course.users.filter((u) => u.toString() !== user_id);
 
