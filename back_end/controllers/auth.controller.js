@@ -22,3 +22,22 @@ exports.register = async (req, res) => {
     const {password: hashedPassword, ...newUser} = user.toJSON();
     res.status(201).json(newUser);
 }
+
+exports.login = async (req, res) => {
+    const {email, password} = req.body;
+
+    const user = await User.findOne({email});
+
+    if (!user) return res.status(404).json({
+        message: "Invalid Credentials" 
+    })
+
+    if(!user.matchPassword(password)) return res.status(404).json({
+        message: "Invalid Credentials"
+    })
+    
+    const token = jwt.sign({id: user.id, email: user.email},process.env.SECRET_KEY);
+    const {password: hashedPassword, ...newUser} = user.toJSON();
+
+    res.json({newUser, token})
+}
