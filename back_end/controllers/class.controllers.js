@@ -17,7 +17,7 @@ exports.enrollClass = async (req, res) => {
     if ( existingEnrollment ) return res.status(409).json({
         message: "User already enrolled in this class"
     })
-    
+
     const classUser = new ClassUser();
     classUser.user_id = user_id,
     classUser.class_id = class_id,
@@ -28,3 +28,20 @@ exports.enrollClass = async (req, res) => {
     res.status(201).json({userID, classID});
 }
 
+exports.addClass = async (req, res) => {
+    const { name, description } = req.body;
+
+    const existingClass = await Class.findOne({name});
+
+    if ( existingClass ) return res.status(409).json({
+        message: "Class already exists"
+    })
+
+    const newClass = new Class();
+    newClass.name = name;
+    newClass.description = description;
+
+    await newClass.save();
+
+    res.json(newClass);
+}

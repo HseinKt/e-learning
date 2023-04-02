@@ -6,8 +6,8 @@ app.use(express.json());
 const authRouter = require("./routes/auth.routes");
 app.use('/auth',authRouter);
 
-const classRoutes = require("./routes/classRoutes");
-app.use("/class",classRoutes);
+const classRouter = require("./routes/class.routes");
+app.use("/class",classRouter);
 
 app.listen(process.env.PORT, (err) => {
     if (err) console.log(err);
