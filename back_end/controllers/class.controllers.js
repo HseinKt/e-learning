@@ -75,3 +75,34 @@ exports.getAllUsersEnrolled = async (req, res) => {
         students: course.users
     })
 }
+
+exports.withdrawalForm = async (req, res) => {
+    const { user_id , class_id } = req.params;
+
+    const course = await Class.findById(class_id);
+    const student = await User.findById(user_id);
+    
+    if( !student.classes.includes(class_id) ) {
+        return res.status(409).json({
+            message: "User is not enrolled in this class",
+            classes: student.classes,
+            users: course.users
+        })
+    }
+
+    // student.classes = student.classes.filter(c => c.toJSON().id !== class_id)
+    // await student.save();
+
+    // course.users = course.users.filter(u => u.toJSON().id !== user_id)
+    // await course.save();
+
+    student.classes = student.classes.filter((c) => c.toString() !== class_id);
+    course.users = course.users.filter((u) => u.toString() !== user_id);
+
+    await student.save();
+    await course.save();
+
+    res.status(201).json({
+        message: "User withdrew from class successfully"
+    })
+}
