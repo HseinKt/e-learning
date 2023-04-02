@@ -3,8 +3,8 @@ const app = express();
 require("dotenv").config(); // call the config() method to load the environment variables from the .env file:
 app.use(express.json());
 
-// const authRouter = require("./routes/auth.routes");
-// app.use('/auth',authRouter);
+const authRouter = require("./routes/auth.routes");
+app.use('/auth',authRouter);
 
 app.listen(process.env.PORT, (err) => {
     if (err) console.log(err);
