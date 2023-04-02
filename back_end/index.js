@@ -6,6 +6,9 @@ app.use(express.json());
 const authRouter = require("./routes/auth.routes");
 app.use('/auth',authRouter);
 
+const classRoutes = require("./routes/classRoutes");
+app.use("/class",classRoutes);
+
 app.listen(process.env.PORT, (err) => {
     if (err) console.log(err);
     console.log("Server is running on port ", process.env.PORT);
