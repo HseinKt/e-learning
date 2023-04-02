@@ -32,6 +32,6 @@ const classUserSchema = new mongoose.Schema({
 })
 
 const Class = mongoose.model("Class",classSchema);
-const classUser = mongoose.model("ClassUser", classUserSchema);
+const ClassUser = mongoose.model("ClassUser", classUserSchema);
 
-module.exports = {Class, classUser};
+module.exports = {Class, ClassUser};

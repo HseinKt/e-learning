@@ -3,6 +3,6 @@ const router = Router();
 
 const { enrollClass } = require("../controllers/class.controllers");
 
-router.post("/enroll",enrollClass);
+router.post("/enroll/:id",enrollClass);
 
 module.exports = router;
