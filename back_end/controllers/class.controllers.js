@@ -4,7 +4,6 @@ const User = require("../models/userModel")
 exports.enrollClass = async (req, res) => {
     const { class_id } = req.params;
     const { user_id } = req.body;
-    // const { class_id, user_id } = req.body;
 
     try {
         const existingUser = await User.findById(user_id);
@@ -14,18 +13,11 @@ exports.enrollClass = async (req, res) => {
             message: "User or Class not Found",
         })
 
-
         if( existingUser.classes.includes(class_id) ) {
             return res.status(409).json({
                 message: "User already enrolled in this class"
             })
         }
-
-        // const findClass = await existingUser.classes.find(class_id);
-        // const findUser = await existingClass.users.find(user_id);
-        // if ( findClass && findUser ) return res.status(409).json({
-        //     message: "User already enrolled in this class"
-        // })
 
         existingUser.classes.push(class_id);
         await existingUser.save();
@@ -62,4 +54,20 @@ exports.addClass = async (req, res) => {
     await newClass.save();
 
     res.json(newClass);
+}
+
+exports.getAllUsersEnrolled = async (req, res) => {
+    const { class_id } = req.params;
+
+    const course = await Class.findById(class_id);
+
+    if( course.users =[] ) return res.status(404).json({
+        message: "class doesn't have any students"
+    })
+
+    res.status(201).json({
+        class_id,
+        message: "success",
+        users: course.users
+    })
 }

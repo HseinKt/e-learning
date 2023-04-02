@@ -24,20 +24,6 @@ const classSchema = new mongoose.Schema({
     ]
 })
 
-// const classUserSchema = new mongoose.Schema({
-//     user_id: {
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: "User",
-//         required: true,
-//     },
-//     class_id: {
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: "Class",
-//         required: true,
-//     }
-// })
-
 const Class = mongoose.model("Class",classSchema);
-// const ClassUser = mongoose.model("ClassUser", classUserSchema);
 
 module.exports = Class;
