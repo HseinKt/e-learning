@@ -19,7 +19,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["user", "admin"],
         default: "user",
-    }
+    },
+    classes: [ 
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Class",
+        }
+    ]
 })
 
 userSchema.pre("save", async function (next) {

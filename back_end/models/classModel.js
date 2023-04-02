@@ -15,23 +15,29 @@ const classSchema = new mongoose.Schema({
     },
     end_date: {
         type: Date,
-    }
+    },
+    users: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ]
 })
 
-const classUserSchema = new mongoose.Schema({
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
-    class_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Class",
-        required: true,
-    }
-})
+// const classUserSchema = new mongoose.Schema({
+//     user_id: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: "User",
+//         required: true,
+//     },
+//     class_id: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: "Class",
+//         required: true,
+//     }
+// })
 
 const Class = mongoose.model("Class",classSchema);
-const ClassUser = mongoose.model("ClassUser", classUserSchema);
+// const ClassUser = mongoose.model("ClassUser", classUserSchema);
 
-module.exports = {Class, ClassUser};
+module.exports = Class;

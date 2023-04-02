@@ -1,31 +1,49 @@
-const {Class, ClassUser} = require("../models/classModel")
+const Class = require("../models/classModel")
 const User = require("../models/userModel")
 
 exports.enrollClass = async (req, res) => {
-    const { class_id } = req.params;
-    const { user_id } = req.body;
+    // const { class_id } = req.params;
+    // const { user_id } = req.body;
+    const { class_id, user_id } = req.body;
 
-    const existingUser = await User.findById({user_id});
-    const existingClass = await Class.findById({class_id});
+    try {
+        const existingUser = await User.findById(user_id);
+        const existingClass = await Class.findById(class_id);
 
-    if (!existingClass || !existingUser) return res.status(404).json({
-        message: "User or Class not Found",
-    })
+        if (!existingClass || !existingUser) return res.status(404).json({
+            message: "User or Class not Found",
+        })
 
-    const existingEnrollment = await ClassUser.findOne({user_id, class_id})
+        if( existingUser.classes.includes(class_id) ) {
+            return res.status(409).json({
+                message: "User already enrolled in this class"
+            })
+        }
 
-    if ( existingEnrollment ) return res.status(409).json({
-        message: "User already enrolled in this class"
-    })
+        // const findClass = await existingUser.classes.find(class_id);
+        // const findUser = await existingClass.users.find(user_id);
+        // if ( findClass && findUser ) return res.status(409).json({
+        //     message: "User already enrolled in this class"
+        // })
 
-    const classUser = new ClassUser();
-    classUser.user_id = user_id,
-    classUser.class_id = class_id,
+        existingUser.classes.push(class_id);
+        await existingUser.save();
 
-    await classUser.save();
+        existingClass.users.push(user_id);
+        await existingClass.save();
 
-    const { user_id: userID, class_id: classID } = classUser.toJSON();
-    res.status(201).json({userID, classID});
+        // const { user_id: userID, class_id: classID } = classUser.toJSON();
+        res.status(201).json({
+            message: "User enrolled in class successfully",
+            user_id,
+            class_id
+        });
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({
+            message: "catch message: "+err.message
+        })
+    }
 }
 
 exports.addClass = async (req, res) => {
