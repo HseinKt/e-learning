@@ -61,13 +61,17 @@ exports.getAllUsersEnrolled = async (req, res) => {
 
     const course = await Class.findById(class_id);
 
+    if( !course )  return res.status(404).json({
+        message: "class doesn't exist"
+    })
+
     if( course.users =[] ) return res.status(404).json({
         message: "class doesn't have any students"
     })
 
     res.status(201).json({
         class_id,
-        message: "success",
-        users: course.users
+        message: "Enrolled students fetched successfully",
+        students: course.users
     })
 }
