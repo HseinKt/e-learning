@@ -1,5 +1,6 @@
 const Class = require("../models/classModel")
 const User = require("../models/userModel")
+const Withdrawal = require("../models/withdrawalModel")
 
 exports.enrollClass = async (req, res) => {
     const { class_id } = req.params;
@@ -90,11 +91,29 @@ exports.withdrawalForm = async (req, res) => {
         })
     }
 
-    student.classes = student.classes.filter((c) => c.toString() !== class_id);
-    course.users = course.users.filter((u) => u.toString() !== user_id);
+    const existingWithdrawal = await Withdrawal.findOne({
+        status: "pending",
+        user_id,
+        class_id
+    })
 
-    await student.save();
-    await course.save();
+    if ( existingWithdrawal ) {
+        return res.status(409).json({
+            message: "Withdrawal request already submited for this class"
+        })
+    }
+
+    const withdrawal = new Withdrawal();
+    withdrawal.user_id = user_id;
+    withdrawal.class_id = class_id;
+
+    await withdrawal.save();
+
+    // student.classes = student.classes.filter((c) => c.toString() !== class_id);
+    // course.users = course.users.filter((u) => u.toString() !== user_id);
+
+    // await student.save();
+    // await course.save();
 
     res.status(201).json({
         message: "User withdrew from class successfully"
