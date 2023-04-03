@@ -4,10 +4,10 @@ const Header = () => {
     return ( 
         <header className="header">
             logo
-            <h1>E-Learning</h1>
-            <div>
-                <button className="login" onClick={() => redirect("login")}>Login</button>
-                <button className="register" onClick={() => redirect("register")}>Register</button>
+            <h1>E-LEARNING</h1>
+            <div className="LogReg">
+                <button className="login btn" onClick={() => redirect("login")}>Login</button>
+                <button className="register btn" onClick={() => redirect("register")}>Register</button>
             </div>
         </header>
      );

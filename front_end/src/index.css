@@ -1,18 +1,68 @@
 :root {
-  --blue: #1363df;
+  --blue: #47b5ff;
   --dark_blue: #06283d;
   --cyan: #47b5ff;
   --light_blue: #dff6ff;
 }
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  background-color: var(--light_blue);
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2%;
+  background-color: azure;
+}
+
+.LogReg {
+  display: flex;
+  flex-direction: row;
+}
+
+/* .login {
+  margin-right: 10%;
+}
+.register {
+  margin-right: 100%;
+} */
+
+.btn {
+  margin-right: 10%;
+  font-weight: 400;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+} 
+
+.btn:hover {
+  background-color:  #72a1e4  ;
+  color: #fff;
+}
+
