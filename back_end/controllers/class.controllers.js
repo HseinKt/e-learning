@@ -4,14 +4,14 @@ const Withdrawal = require("../models/withdrawalModel")
 
 exports.enrollClass = async (req, res) => {
     const { class_id } = req.params;
-    const { user_id } = req.body;
+    const { user_id } = req;
 
     try {
         const existingUser = await User.findById(user_id);
         const existingClass = await Class.findById(class_id);
         
         if (!existingClass || !existingUser) return res.status(404).json({
-            message: "User or Class not Found",
+            message: "User or Class not Found " + user_id,
         })
 
         if( existingUser.classes.includes(class_id) ) {
@@ -78,7 +78,8 @@ exports.getAllUsersEnrolled = async (req, res) => {
 }
 
 exports.withdrawalForm = async (req, res) => {
-    const { user_id , class_id } = req.params;
+    const { class_id } = req.params;
+    const { user_id } = req;
 
     const course = await Class.findById(class_id);
     const student = await User.findById(user_id);
@@ -109,13 +110,64 @@ exports.withdrawalForm = async (req, res) => {
 
     await withdrawal.save();
 
-    // student.classes = student.classes.filter((c) => c.toString() !== class_id);
-    // course.users = course.users.filter((u) => u.toString() !== user_id);
-
-    // await student.save();
-    // await course.save();
-
     res.status(201).json({
         message: "User withdrew from class successfully"
     })
+}
+
+exports.withdrawalApprove = async ( req, res ) => {
+    const {withdrawal_id} = req.params;
+    const {status} = req.body;
+
+    try {
+        const withdrawal = await Withdrawal.findById(withdrawal_id)
+        if( !withdrawal ) return res.status(404).json({
+            message : "Withdrawal not found"
+        })
+        
+        withdrawal.status = status
+        const { user_id, class_id } = withdrawal;
+        if( status == "approved") {
+
+            const studentClasses = await User.updateOne(
+                { _id: user_id },
+                { $pull: {classes: class_id} }  
+            )
+            // The $pull operator is used to remove the specified value from the array field. In this case, we are removing class_id from the classes array of the student document, and user_id from the users array of the course document.
+            const courseUsers = await Class.updateOne(
+                { _id: class_id},
+                { $pull: {users: user_id} }
+            )
+
+            // const student = await User.findById(user_id);
+            // const course = await Class.findById(class_id);
+
+            // if (!student || !course) return res.status(404).json({
+            //         message: "Student or course not found"
+            // });
+
+            // student.classes = student.classes.filter((c) => c.toString() !== class_id);
+            // course.users = course.users.filter((u) => u.toString() !== user_id);
+
+            // await student.save();
+            // await course.save();
+            
+        }
+
+        const updateWithdrawal = await Withdrawal.findOneAndUpdate(
+            { _id: withdrawal_id },
+            withdrawal,
+            { new: true}
+        )
+
+        res.status(200).json({
+            message: "Withdrawal updated successfully",
+            withdrawal: updateWithdrawal
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server error " 
+        })
+    }
 }

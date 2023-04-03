@@ -7,7 +7,8 @@ const authRouter = require("./routes/auth.routes");
 app.use('/auth',authRouter);
 
 const classRouter = require("./routes/class.routes");
-app.use("/class",classRouter);
+const { authMiddleware } = require("./middlewares/auth.middleware")
+app.use("/class",authMiddleware,classRouter);
 
 app.listen(process.env.PORT, (err) => {
     if (err) console.log(err);

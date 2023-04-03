@@ -13,6 +13,7 @@ exports.authMiddleware = async (req, res, next) => {
         const decode = jwt.verify(token, process.env.SECRET_KEY)
         const user = await User.findById(decode.id, "-password")
 
+        req.user_id = decode.id
         req.user = user
         
         next()
