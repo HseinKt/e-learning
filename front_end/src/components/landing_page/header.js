@@ -1,9 +1,10 @@
 import { redirect } from "react-router-dom";
+import Logo from "./logo";
 
 const Header = () => {
     return ( 
         <header className="header">
-            logo
+            <Logo />
             <h1>E-LEARNING</h1>
             <div className="LogReg">
                 <button className="login btn" onClick={() => redirect("login")}>Login</button>
