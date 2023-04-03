@@ -1,25 +1,27 @@
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import image1 from "../images/elearning.svg"
-import image2 from "../images/elearning2.webp"
+import image2 from "../images/elearning2.jpg"
 
 const Landing_body = () => {
+    const navigate = useNavigate();
     return (
         <div className="landing_body">
           <div className="landing_row">
             <div>
-              <h2>Compile your code with ease using our Python compiler</h2>
-              <h5>Instant IDE</h5>
-              <h4>Code right from your browser</h4>
+              <h2>E-learning is a type of learning conducted digitally via electronic media,
+                 typically involving the internet.</h2>
+              <h5>Online courses</h5>
+              <h4>Learning Management Systems (LMSs)</h4>
               <p>
-                Codeit is the best tool for starting, sharing, and developing
-                projects in Python programming language, right from your browser.
+                They often come with interactive materials to allow the learner to test
+                and apply their own knowledge.
               </p>
               <div className="lanbuttons">
-                <button onClick={() => redirect("coding_page")}>
-                  Start Coding
+                <button onClick={() => navigate("/enroll")}>
+                  Enroll Courses
                 </button>
-                <button onClick={() => redirect("search_page")}>
-                  Search Members
+                <button onClick={() => navigate("/withdraw")}>
+                  Withdraw Courses
                 </button>
               </div>
             </div>
@@ -31,6 +33,7 @@ const Landing_body = () => {
               />
             </div>
           </div>
+
           <div className="landing_row">
             <div>
               <img
@@ -41,13 +44,14 @@ const Landing_body = () => {
             </div>
             <div style={{marginLeft:"1rem"}}>
               <h2>
-                Compile your code faster than ever with our high-speed servers
+              What is e-learning in education?
               </h2>
               <p>
-                Our Python compiler's high-speed servers ensure faster and efficient
-                code compilation, giving you more time for important project tasks.
-                Enjoy a reliable and stable platform for your code, avoiding costly
-                delays and setbacks.
+                There are many ways in which teachers have been implementing e-learning
+                to continue the teaching of their curriculum. One major way is the use
+                of virtual ‘classrooms’ or lessons, using video communication platforms
+                like Zoom. The teacher is able to plan and teach lessons as normal,
+                with all students attending the lessons from their own home
               </p>
             </div>
           </div>

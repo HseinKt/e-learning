@@ -35,19 +35,10 @@ code {
   padding: 2%;
   background-color: azure;
 }
-
 .LogReg {
   display: flex;
   flex-direction: row;
 }
-
-/* .login {
-  margin-right: 10%;
-}
-.register {
-  margin-right: 100%;
-} */
-
 .btn {
   margin-right: 10%;
   font-weight: 400;
@@ -62,14 +53,76 @@ code {
   border-color: #2e6da4;
   
 } 
-
 .btn:hover {
   background-color:  #72a1e4  ;
   color: #fff;
 }
-
 .logo {
   width: 5%;
   border-radius: 50%;
 }
 
+/* Landing Body */
+.landing_body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--light_blue);
+  justify-content: space-between;
+  padding: 100px;
+}
+
+.landing_row {
+  display: flex;
+  padding: 50px 100px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.landing_row div {
+  max-width: 500px;
+}
+
+.landing_row h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.landing_row h4 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.landing_row h5 {
+  color: gray;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.landing_row p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+.lanbuttons{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.landing_row button {
+  background-color: var(--dark_blue);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+.landing_row button:hover {
+  border: 1px black solid;
+  background-color: var(--light_blue);
+  color: var(--dark_blue);
+}
+.landing_row img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-left: 1rem;
+}
