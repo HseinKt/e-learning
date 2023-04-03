@@ -1,4 +1,4 @@
-const Login = () => {
+const NotFound = () => {
     return ( 
         <div>
             
@@ -6,4 +6,4 @@ const Login = () => {
      );
 }
  
-export default Login;
+export default NotFound;
