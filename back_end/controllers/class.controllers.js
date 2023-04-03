@@ -138,19 +138,6 @@ exports.withdrawalApprove = async ( req, res ) => {
                 { _id: class_id},
                 { $pull: {users: user_id} }
             )
-
-            // const student = await User.findById(user_id);
-            // const course = await Class.findById(class_id);
-
-            // if (!student || !course) return res.status(404).json({
-            //         message: "Student or course not found"
-            // });
-
-            // student.classes = student.classes.filter((c) => c.toString() !== class_id);
-            // course.users = course.users.filter((u) => u.toString() !== user_id);
-
-            // await student.save();
-            // await course.save();
             
         }
 
