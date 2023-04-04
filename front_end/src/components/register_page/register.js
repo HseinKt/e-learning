@@ -1,16 +1,73 @@
 import { useRef } from "react"
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
+
     const nameRef = useRef("");
     const emailRef = useRef("");
     const passwordRef = useRef("");
     const confirmPasswordRef = useRef("");
 
-    const sendData = () => {
+    const sendData = async () => {
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
+
+        // const formData = new FormData();
+        // formData.append('name',name);
+        // formData.append('email',email);
+        // formData.append('password',password);
+        // formData.append('confirmPassword',confirmPassword);
+
+        const data = {
+            name: name,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword
+        };
+
+        try {
+            await axios.post("http://127.0.0.1:8000/auth/register",data ,{
+            headers: {
+              'Content-Type': 'application/json'
+            }})
+            .then((response) => {
+                console.log(data.data);
+                navigate("/login");
+            })
+            .catch(error => {
+                console.log("axios error "+error);
+            })
+        } catch (error) {
+            console.log("catch error "+error);
+        }
+        
+        
+        // try {
+            // const data = await axios.post("http://127.0.0.1:3000/auth/register",formData);
+
+            // const api = axios.create({
+            //     baseURL: 'http://127.0.0.1:3000',
+            //     headers: {
+            //       'Access-Control-Allow-Origin': '*',
+            //       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+            //       'Access-Control-Allow-Headers': 'Content-Type',
+            //       'Access-Control-Allow-Credentials': true
+            //     }
+            //   });
+              
+            //   const data = await api.post('/auth/register', formData);
+            // const data = await axios.post("http://127.0.0.1:3000/auth/register", formData, { withCredentials: true });
+
+            // console.log(data.data);
+            // navigate("/login");
+            
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
 
     return (
