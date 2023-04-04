@@ -149,7 +149,8 @@ code {
 .login-title {
   text-align: center;
 }
-.register-form {
+.register-form,
+.login-form {
   margin-top: 10%;
 }
 .register-form input,
@@ -191,4 +192,14 @@ code {
 .login-button:hover, .register-button:hover {
   background-color: var(--light_blue);
   color: black;
+}
+
+/* a link */
+a {
+  color: #131111;
+  margin: 2%;
+}
+a:hover{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }

@@ -36,7 +36,7 @@ const Register = () => {
                     </div>
                     <button type="submit" className="register-button" id="register-button" onClick={sendData}>Register</button>
                     <div className="register-link">
-                        Already registered? <a href="/login">Login Now</a>
+                        <a href="/login">Already registered? </a>
                     </div>
                 </div>
             </div>
