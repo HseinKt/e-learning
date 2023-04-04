@@ -16,12 +16,6 @@ const Register = () => {
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
 
-        // const formData = new FormData();
-        // formData.append('name',name);
-        // formData.append('email',email);
-        // formData.append('password',password);
-        // formData.append('confirmPassword',confirmPassword);
-
         const data = {
             name: name,
             email: email,
@@ -44,30 +38,6 @@ const Register = () => {
         } catch (error) {
             console.log("catch error "+error);
         }
-        
-        
-        // try {
-            // const data = await axios.post("http://127.0.0.1:3000/auth/register",formData);
-
-            // const api = axios.create({
-            //     baseURL: 'http://127.0.0.1:3000',
-            //     headers: {
-            //       'Access-Control-Allow-Origin': '*',
-            //       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-            //       'Access-Control-Allow-Headers': 'Content-Type',
-            //       'Access-Control-Allow-Credentials': true
-            //     }
-            //   });
-              
-            //   const data = await api.post('/auth/register', formData);
-            // const data = await axios.post("http://127.0.0.1:3000/auth/register", formData, { withCredentials: true });
-
-            // console.log(data.data);
-            // navigate("/login");
-            
-        // } catch (error) {
-        //     console.log(error);
-        // }
     }
 
     return (
