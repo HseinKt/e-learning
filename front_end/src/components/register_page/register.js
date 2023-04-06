@@ -10,11 +10,16 @@ const Register = () => {
     const passwordRef = useRef("");
     const confirmPasswordRef = useRef("");
 
-    const sendData = async () => {
+    const sendData = () => {
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         const confirmPassword = confirmPasswordRef.current.value;
+
+        if (password!== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
 
         const data = {
             name: name,
@@ -24,7 +29,7 @@ const Register = () => {
         };
 
         try {
-            await axios.post("http://127.0.0.1:8000/auth/register",data ,{
+            axios.post("http://127.0.0.1:8000/auth/register",data ,{
             headers: {
               'Content-Type': 'application/json'
             }})
@@ -33,7 +38,12 @@ const Register = () => {
                 navigate("/login");
             })
             .catch(error => {
-                console.log("axios error "+error);
+                if( error.response && error.response.status === 409 ) {
+                    const message = error.response.data.message;
+                    console.log(message);
+                    alert( message );
+                }
+                else console.log("axios error "+error);
             })
         } catch (error) {
             console.log("catch error "+error);

@@ -1,12 +1,42 @@
 import { useRef } from "react"
+import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 const Login = () => {
+    const navigate = useNavigate();
     const emailRef = useRef("");
     const passwordRef = useRef("");
 
     const sendData = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
+
+        const data = {
+            email: email,
+            password: password,
+        };
+
+        try {
+            axios.post("http://127.0.0.1:8000/auth/login",data ,{
+            headers: {
+              'Content-Type': 'application/json'
+            }})
+            .then((response) => {
+                console.log(response.data);
+                navigate("/");
+            })
+            .catch(error => {
+                console.log(error.message);
+                if( error.response && error.response.status === 404 ) {
+                    const message = error.response.data.message;
+                    console.log(message);
+                    alert( message );
+                }
+                else console.log("axios error "+error);
+            })
+        } catch (error) {
+            console.log("catch error "+error);
+        }
     }
 
     return (
