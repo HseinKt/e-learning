@@ -158,3 +158,19 @@ exports.withdrawalApprove = async ( req, res ) => {
         })
     }
 }
+
+exports.getCourses = async (req, res) => {
+
+    const course = await Class.find();
+
+    if (!course) {
+        return res.status(404).json({
+            message: "COurses not found",
+        })
+    }
+
+    res.status(201).json({
+        message: "Courses fetched successfully",
+        courses: course
+    })
+}
