@@ -203,3 +203,57 @@ a:hover{
   text-decoration: none;
   color: rgb(255, 255, 255);
 }
+
+
+/* Enroll */
+.Enroll_course {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark_blue);
+  color: #ffffff;
+  /* font-size: 20px; */
+  padding: 20px;
+} 
+.Enroll_course ul {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.Enroll_course li {
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+.Enroll_course li:hover {
+  background-color: var(--blue);
+  color: #0d0d0e;
+}
+.Enroll_course h2 {
+  padding-bottom: 20px;
+}
+.iput_course {
+  margin-right: 20px;
+}
+.Enroll_course button {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: var(--blue);
+  color: #0f0f0f;
+  font-size: 15px;
+  padding: 3px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+}
+.Enroll_course button:hover {
+  background-color: var(--light_blue);
+  border-radius: 20px;
+  color: #0f0f0f;
+}

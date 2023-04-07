@@ -8,8 +8,8 @@ const Header = () => {
             <Logo />
             <h1>E-LEARNING</h1>
             <div className="LogReg">
-                <button className="login btn" onClick={() => navigate("login")}>Login</button>
-                <button className="register btn" onClick={() => navigate("register")}>Register</button>
+                <button className="login btn" onClick={() => navigate("../login")}>Login</button>
+                <button className="register btn" onClick={() => navigate("../register")}>Register</button>
             </div>
         </header>
      );

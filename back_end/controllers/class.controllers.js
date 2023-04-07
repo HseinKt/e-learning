@@ -165,12 +165,13 @@ exports.getCourses = async (req, res) => {
 
     if (!course) {
         return res.status(404).json({
-            message: "COurses not found",
+            message: "Courses not found",
         })
     }
 
     res.status(201).json({
         message: "Courses fetched successfully",
         courses: course
+        // courses: course[0].name
     })
 }
