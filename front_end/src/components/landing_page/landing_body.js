@@ -17,10 +17,10 @@ const Landing_body = () => {
                 and apply their own knowledge.
               </p>
               <div className="lanbuttons">
-                <button onClick={() => navigate("/enroll")}>
+                <button onClick={() => navigate("../enroll")}>
                   Enroll Courses
                 </button>
-                <button onClick={() => navigate("/withdraw")}>
+                <button onClick={() => navigate("../withdraw")}>
                   Withdraw Courses
                 </button>
               </div>

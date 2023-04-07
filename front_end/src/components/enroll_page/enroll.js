@@ -8,7 +8,6 @@ const Enroll = () => {
     const navigate = useNavigate();
 
     const [courses, setCourses] = useState([]);
-    const [selectedCourses, setSelectedCourses] = useState([]);
     const [checked, setChecked] = useState([]);
     const [token, setToken] = useState("");
 
@@ -51,7 +50,39 @@ const Enroll = () => {
         newChecked[index] = event.target.checked;
         setChecked(newChecked);
     }
+
+    // const runHandler = async () => {
+    //     const selectedCourses = courses
+    //     .filter((course, index) => checked[index])
+    //     .map((course) => courses._id)
+    // }
     
+    const runHandler = async () => {
+        try {
+            const selectedCourses = [];
+            for (let index = 0; index < checked.length; index++) {
+                if (checked[index]) {
+                    selectedCourses.push(courses[index]._id);
+                }
+            }
+
+            const response = await axios.post("http://127.0.0.1:8000/class/enroll",
+            { class_id: selectedCourses },
+            {
+                headers:
+                {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            
+            console.log("Enrollment successful:", JSON.stringify(response.data));
+            navigate("/");
+        } catch (error) {
+            console.log("Enrollment error:", error.message);
+        }
+    }
+
     return ( 
         <div className="Enroll_course">
             <h2>Enroll Courses</h2>
@@ -71,7 +102,7 @@ const Enroll = () => {
                         )
                     })} 
                 </ul>
-                <button onClick={""}> ENROL</button>
+                <button onClick={runHandler}> ENROL</button>
             </div>
         </div>
      );

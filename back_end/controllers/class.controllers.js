@@ -3,7 +3,7 @@ const User = require("../models/userModel")
 const Withdrawal = require("../models/withdrawalModel")
 
 exports.enrollClass = async (req, res) => {
-    const { class_id } = req.params;
+    const { class_id } = req.body;
     const { user_id } = req;
 
     try {
