@@ -9,7 +9,7 @@ router.get("/courses", getCourses);
 router.post("/addClass", adminMiddleware, addClass);
 router.get("/:class_id/getUsers", adminMiddleware, getAllUsersEnrolled)
 router.get("/getClasses", getAllClassesEnrolled)    
-router.delete("/:class_id/withdrawal",withdrawalForm)
+router.get("/:class_id/withdrawal",withdrawalForm)
 router.post("/:withdrawal_id/approve", adminMiddleware, withdrawalApprove)
 
 module.exports = router;

@@ -80,7 +80,8 @@ exports.getAllUsersEnrolled = async (req, res) => {
 exports.getAllClassesEnrolled = async (req, res) => {
 
     const { user_id } = req;
-    const user = await User.findById(user_id);
+    // const user = await User.findById(user_id);
+    const user = await User.findById(user_id).populate('classes');
 
     if( !user )  return res.status(404).json({
         message: "student doesn't exist"
@@ -94,7 +95,7 @@ exports.getAllClassesEnrolled = async (req, res) => {
     res.status(201).json({
         user_id,
         message: "Enrolled Classes fetched successfully",
-        Courses: user.classes
+        courses: user.classes,
     })
 }
 
