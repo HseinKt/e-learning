@@ -31,9 +31,9 @@ const Enroll = () => {
                 }
             })
             .then(response => {
-                console.log("after response");
+                // console.log("after response");
                 setCourses(response.data.courses);
-                console.log("consol : "+JSON.stringify(response.data.courses));
+                // console.log("consol : "+JSON.stringify(response.data.courses));
                 // console.log("consol : "+JSON.stringify(response.data.courses[0].name));
                 setChecked(new Array(response.data.courses.length).fill(false));
             })
@@ -76,8 +76,14 @@ const Enroll = () => {
                 }
             });
             
-            console.log("Enrollment successful:", JSON.stringify(response.data));
-            navigate("/");
+            if (response.status === 409) {
+                console.log("Enrollment already exist:", JSON.stringify(response.data));
+            }
+            else if (response.status === 201){
+                console.log("Enrollment successful:", JSON.stringify(response.data));
+                navigate("/");
+            }
+            
         } catch (error) {
             console.log("Enrollment error:", error.message);
         }

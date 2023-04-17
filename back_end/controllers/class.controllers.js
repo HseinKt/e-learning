@@ -66,7 +66,7 @@ exports.getAllUsersEnrolled = async (req, res) => {
         message: "class doesn't exist"
     })
 
-    if( course.users =[] ) return res.status(404).json({
+    if( course.users == [] ) return res.status(404).json({
         message: "class doesn't have any students"
     })
 
@@ -74,6 +74,27 @@ exports.getAllUsersEnrolled = async (req, res) => {
         class_id,
         message: "Enrolled students fetched successfully",
         students: course.users
+    })
+}
+
+exports.getAllClassesEnrolled = async (req, res) => {
+
+    const { user_id } = req;
+    const user = await User.findById(user_id);
+
+    if( !user )  return res.status(404).json({
+        message: "student doesn't exist"
+    })
+
+    if( user.classes == [] ) return res.status(404).json({
+        message: "Student doesn't have any classes",
+        user: user
+    })
+
+    res.status(201).json({
+        user_id,
+        message: "Enrolled Classes fetched successfully",
+        Courses: user.classes
     })
 }
 
