@@ -2,10 +2,10 @@
 Creating an e-learning system using React.js (Website for users), Node.js Express for the back end, and MongoDB as a database. 
 
 ## Implementation:
-
-![login](https://github.com/HseinKt/e-learning/assets/120685276/a3524d4f-30df-4274-ad0c-d27416622cf0)
-
-![register](https://github.com/HseinKt/e-learning/assets/120685276/9794dbe1-f2be-4668-be39-f7bcb66f20ee)
+<div>
+  <img src="https://github.com/HseinKt/e-learning/assets/120685276/a3524d4f-30df-4274-ad0c-d27416622cf0.jpg">
+  <img src="https://github.com/HseinKt/e-learning/assets/120685276/9794dbe1-f2be-4668-be39-f7bcb66f20ee.jpg">
+</div>
 
 ![header](https://github.com/HseinKt/e-learning/assets/120685276/1ccd0670-0ffc-4dc8-8385-4053993dc1bb)
 
